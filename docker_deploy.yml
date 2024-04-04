@@ -1,0 +1,23 @@
+---
+- name: Deploy Apache Docker container
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Build Docker image
+      docker_image:
+        name: my-apache-webpage
+        path: .
+        tag: latest
+        
+    - name: Pull Apache Docker image
+      docker_image:
+        name: httpd:latest
+
+    - name: Run Apache Docker container
+      docker_container:
+        name: apache_container
+        image: httpd:latest
+        state: started
+        restart_policy: always
+        ports:
+          - "8888:80"

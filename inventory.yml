@@ -1,0 +1,2 @@
+[oracle_vms]
+oracle_vm ansible_host=10.69.169.6
